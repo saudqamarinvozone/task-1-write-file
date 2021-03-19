@@ -10,10 +10,10 @@ Home Dir: ${os.homedir()}`;
 async function firstMethod () {
 
     try {
-        const file =   await createFile();
+        const file = await createFile();
         console.log(file);
     } catch (err) {
-        console.log('Error', err.message);
+        console.error('Error', err.message);
     }
 
 }
@@ -21,9 +21,9 @@ async function firstMethod () {
 function createFile(){
     return new Promise( (resolve, reject) => {
 
-        fs.writeFile(process.env.FILE_PATH, content, {flag: 'a+'}, err => {
+        fs.writeFile(os.homedir()+process.env.FILE_PATH, content, {flag: 'a+'}, err => {
             if (err) {
-                reject('Error')
+                reject(err)
             } else {
                 resolve({id: 1})
             }
